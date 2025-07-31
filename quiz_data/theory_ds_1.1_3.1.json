@@ -1,0 +1,151 @@
+{
+  "quiz_title": "Decision Trees (Default trees)",
+  "questions": [
+    {
+      "question_id": 1,
+      "question_text": "Какое из этих утверждений о Gain Ratio в C4.5 НЕверно?",
+      "question_type": "single_choice",
+      "options": [
+        "Используется для коррекции смещения Information Gain в сторону признаков с большим количеством значений",
+        "Рассчитывается как отношение Information Gain к Intrinsic Value",
+        "Всегда дает лучшие результаты, чем Gini Impurity",
+        "Помогает избежать создания слишком широких деревьев"
+      ],
+      "correct_answer": 2,
+      "explanation": "Gain Ratio не всегда лучше Gini Impurity - выбор зависит от данных. Правильные утверждения: 1) Корректирует bias Information Gain 2) Formula: Gain Ratio = IG/IV 3) Предотвращает широкие деревья."
+    },
+    {
+      "question_id": 2,
+      "question_text": "Какие из этих методов действительно помогают бороться с переобучением в Decision Trees? (Выберите 3 варианта)",
+      "question_type": "multi_choice",
+      "options": [
+        "Установка min_samples_leaf=5",
+        "Увеличение max_depth",
+        "Использование Post-pruning",
+        "Добавление новых признаков",
+        "Применение Cost Complexity Pruning"
+      ],
+      "correct_answers": [0, 2, 4],
+      "explanation": "Эффективные методы: 1) min_samples_leaf ограничивает рост 2) Post-pruning обрезает после построения 3) CCP использует alpha для обрезки. Увеличение max_depth и добавление признаков усиливают переобучение."
+    },
+    {
+      "question_id": 3,
+      "question_text": "Почему Gini Impurity может быть предпочтительнее Entropy на больших наборах данных?",
+      "question_type": "single_choice",
+      "options": [
+        "Потому что дает более точные результаты",
+        "Из-за более быстрого вычисления без логарифмов",
+        "Так как лучше работает с категориальными признаками",
+        "Потому что требует меньше памяти"
+      ],
+      "correct_answer": 1,
+      "explanation": "Gini вычисляется быстрее, т.к. не требует вычисления логарифмов (формула: 1-Σp_i²). Точность и работа с категориями у Gini и Entropy сопоставимы."
+    },
+    {
+      "question_id": 4,
+      "question_text": "Какие из этих утверждений о CART верны? (Выберите 2 варианта)",
+      "question_type": "multi_choice",
+      "options": [
+        "Использует только бинарные разбиения",
+        "Может работать только с числовыми признаками",
+        "Применяет Gini Impurity для классификации",
+        "Требует обязательной нормализации данных",
+        "Поддерживает регрессионные задачи"
+      ],
+      "correct_answers": [0, 2],
+      "explanation": "CART: 1) Только бинарные splits 2) Использует Gini. Неверные утверждения: работает с категориями (через one-hot), не требует нормализации, поддерживает регрессию через MSE."
+    },
+    {
+      "question_id": 5,
+      "question_text": "Как изменится дерево решений, если все признаки умножить на 2?",
+      "question_type": "single_choice",
+      "options": [
+        "Структура дерева полностью изменится",
+        "Дерево останется прежним, только пороги разделения удвоятся",
+        "Дерево станет глубже",
+        "Дерево станет шире"
+      ],
+      "correct_answer": 1,
+      "explanation": "Decision Trees инвариантны к монотонным преобразованиям признаков. Пороги разделения просто масштабируются, но структура дерева сохраняется."
+    },
+    {
+      "question_id": 6,
+      "question_text": "Какие из этих проблем характерны для Information Gain? (Выберите 2 варианта)",
+      "question_type": "multi_choice",
+      "options": [
+        "Склонность к выбору признаков с большим числом категорий",
+        "Чувствительность к выбросам",
+        "Неспособность работать с непрерывными признаками",
+        "Высокая вычислительная сложность",
+        "Не учитывает взаимосвязи между признаками"
+      ],
+      "correct_answers": [0, 1],
+      "explanation": "Проблемы IG: 1) Bias к мультикатегориальным признакам 2) Чувствительность к выбросам. Неверно: работает с непрерывными признаками, сложность O(n log n), как и у других критериев."
+    },
+    {
+      "question_id": 7,
+      "question_text": "Почему Decision Trees считаются 'жадными' алгоритмами?",
+      "question_type": "single_choice",
+      "options": [
+        "Потому что требуют много вычислительных ресурсов",
+        "Из-за выбора локально оптимальных разбиений без учета глобальной оптимальности",
+        "Так как склонны к переобучению",
+        "Потому что работают только на малых данных"
+      ],
+      "correct_answer": 1,
+      "explanation": "Жадность проявляется в выборе локально оптимального split на каждом шаге без backtracking. Это не гарантирует глобального оптимума, но делает алгоритм быстрым."
+    },
+    {
+      "question_id": 8,
+      "question_text": "Какие из этих методов помогают обрабатывать категориальные признаки в Decision Trees? (Выберите 2 варианта)",
+      "question_type": "multi_choice",
+      "options": [
+        "One-Hot Encoding",
+        "Label Encoding",
+        "Target Encoding",
+        "Min-Max Scaling",
+        "Z-score Normalization"
+      ],
+      "correct_answers": [0, 2],
+      "explanation": "Эффективные методы: 1) One-Hot для категорий с малым числом значений 2) Target Encoding для высококардинальных. Label Encoding искажает порядок, а scaling не нужен для деревьев."
+    },
+    {
+      "question_id": 9,
+      "question_text": "Как Cost Complexity Pruning (CCP) выбирает оптимальное поддерево?",
+      "question_type": "single_choice",
+      "options": [
+        "Минимизирует глубину дерева",
+        "Балансирует точность и сложность через параметр alpha",
+        "Удаляет узлы с наименьшим количеством samples",
+        "Максимизирует Information Gain"
+      ],
+      "correct_answer": 1,
+      "explanation": "CCP минимизирует cost=R(T)+α|T|, где R(T) - ошибка, |T| - число листьев. Alpha контролирует trade-off между точностью и сложностью."
+    },
+    {
+      "question_id": 10,
+      "question_text": "Почему Random Forest часто превосходит одиночные Decision Trees? (Выберите 2 варианта)",
+      "question_type": "multi_choice",
+      "options": [
+        "За счет уменьшения variance через усреднение",
+        "Потому что каждое дерево глубже",
+        "Благодаря случайному выбору признаков для split",
+        "Из-за использования только линейных разделений",
+        "За счет обязательной нормализации данных"
+      ],
+      "correct_answers": [0, 2],
+      "explanation": "RF лучше благодаря: 1) Bagging уменьшает variance 2) Feature randomness декоррелирует деревья. Неверно: деревья обычно мельче, работают с нелинейными границами, нормализация не требуется."
+    }
+  ],
+  "pdf_links": [
+    "https://drive.google.com/file/d/1evEorZ3RQlRjpWt6jM9-dCYirfICXCsJ/view?usp=sharing",
+"https://drive.google.com/file/d/1PlE6LmzD5bZwbi0Pqs1B_LflhejLn4xZ/view?usp=sharing",
+"https://drive.google.com/file/d/1UZVxqR3cLSc2QXZDPuuHIiPwzC1044nx/view?usp=sharing"
+  ],
+  "metadata": {
+    "difficulty_level": "advanced",
+    "tags": ["decision_trees", "split_criteria", "pruning", "regularization"],
+    "author": "AI Tutor",
+    "created_at": "2023-11-15"
+  }
+}
