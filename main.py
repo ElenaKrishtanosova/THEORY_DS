@@ -268,13 +268,13 @@ def main():
                 mime="text/plain"
             )
     
-    # Логотип и заголовок
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        st.image("images/image_innowise1.png", width=150)
+    # Логотип по центру
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.title("📚 Тестирование знаний по машинному обучению")
-        st.markdown(f"**Раздел:** {selected_section} - {sections[selected_section]}")
+        st.image("images/image_innowise1.png", width=300)
+    
+    # Заголовок раздела
+    st.markdown(f"## Section quiz - {selected_section}: {sections[selected_section]}")
     
     st.markdown("---")
     
