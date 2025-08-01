@@ -1,6 +1,5 @@
 import streamlit as st
 import json
-import os
 from typing import Dict, List, Any, Optional
 from datetime import datetime
 
@@ -22,23 +21,19 @@ def show_registration_form():
     
     return None
 
-def get_user_results_file(user_name: str) -> str:
-    """Возвращает путь к файлу результатов пользователя"""
-    return f"results/{user_name}_results.txt"
-
 def get_user_results_content(user_name: str) -> str:
-    """Возвращает содержимое файла результатов пользователя"""
-    results_file = get_user_results_file(user_name)
-    if os.path.exists(results_file):
-        with open(results_file, 'r', encoding='utf-8') as f:
-            return f.read()
-    return ""
+    """Возвращает содержимое результатов пользователя из session_state"""
+    if 'user_results' not in st.session_state:
+        st.session_state['user_results'] = ""
+    return st.session_state['user_results']
 
 def save_wrong_answers(user_name: str, section_name: str, subsection_name: str, 
                       questions: List[Dict], user_answers: List[Dict], 
                       pdf_links: List[str] = None):
-    """Сохраняет неправильные ответы в файл результатов"""
-    results_file = get_user_results_file(user_name)
+    """Сохраняет неправильные ответы в session_state"""
+    # Инициализируем результаты в session_state если их нет
+    if 'user_results' not in st.session_state:
+        st.session_state['user_results'] = ""
     
     # Собираем неправильные ответы и считаем статистику
     wrong_answers = []
@@ -119,13 +114,9 @@ def save_wrong_answers(user_name: str, section_name: str, subsection_name: str,
     
     result_text += f"\n{'='*60}\n"
     
-    # Записываем в файл
-    try:
-        with open(results_file, 'a', encoding='utf-8') as f:
-            f.write(result_text)
-        st.success(f"📝 Результаты сохранены в файл: {results_file}")
-    except Exception as e:
-        st.error(f"Ошибка при сохранении результатов: {e}")
+    # Добавляем к существующим результатам в session_state
+    st.session_state['user_results'] += result_text
+    st.success(f"📝 Результаты сохранены в память приложения")
 
 def load_quiz_data(file_path: str) -> Optional[Dict[str, Any]]:
     """Загружает данные теста из JSON файла"""
