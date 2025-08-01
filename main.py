@@ -214,7 +214,7 @@ def calculate_score(user_answers: List[Dict], questions: List[Dict]) -> tuple:
 def main():
     st.set_page_config(
         page_title="Тестирование знаний по ML",
-        page_icon="📚",
+        page_icon="images/favicon.ico",
         layout="wide"
     )
     
@@ -228,7 +228,7 @@ def main():
         # Логотип в sidebar
         st.image("images/image_innowise.png", width=200)
         st.markdown("---")
-        st.header("📚 Выбор раздела")
+        st.header("🌿 Выбор раздела")
         
         # Словарь разделов
         sections = {
