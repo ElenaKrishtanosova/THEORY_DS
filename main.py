@@ -5,8 +5,13 @@ from datetime import datetime
 
 def show_registration_form():
     """Показывает форму регистрации и возвращает имя пользователя"""
-    st.markdown("## 👤 Регистрация")
-    st.markdown("Введите ваше имя для начала тестирования:")
+    # Логотип и заголовок регистрации
+    col1, col2 = st.columns([1, 3])
+    with col1:
+        st.image("images/image_innowise2.png", width=200)
+    with col2:
+        st.markdown("## 👤 Регистрация")
+        st.markdown("Введите ваше имя для начала тестирования:")
     
     with st.form("registration_form"):
         user_name = st.text_input("Ваше имя:", key="user_name_input")
@@ -220,6 +225,9 @@ def main():
     
     # Sidebar для выбора раздела
     with st.sidebar:
+        # Логотип в sidebar
+        st.image("images/image_innowise.png", width=200)
+        st.markdown("---")
         st.header("📚 Выбор раздела")
         
         # Словарь разделов
@@ -260,8 +268,14 @@ def main():
                 mime="text/plain"
             )
     
-    st.title("📚 Тестирование знаний по машинному обучению")
-    st.markdown(f"**Раздел:** {selected_section} - {sections[selected_section]}")
+    # Логотип и заголовок
+    col1, col2 = st.columns([1, 3])
+    with col1:
+        st.image("images/image_innowise1.png", width=150)
+    with col2:
+        st.title("📚 Тестирование знаний по машинному обучению")
+        st.markdown(f"**Раздел:** {selected_section} - {sections[selected_section]}")
+    
     st.markdown("---")
     
     # Динамические названия вкладок для каждого раздела
@@ -584,7 +598,14 @@ def main():
                     if st.button("Скрыть результаты", key=f"hide_{i}"):
                         st.session_state[f'show_results_{i}'] = False
                         st.rerun()
-                
+    
+    # Футер с логотипом
+    st.markdown("---")
+    st.markdown("---")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image("images/image_innowise.png", width=100)
+        st.markdown("*Разработано командой Innowise*")
 
 
 if __name__ == "__main__":
